@@ -39,6 +39,8 @@ void rm67162_init(void);
 // Set the display window size
 void lcd_address_set(uint16_t x1, uint16_t y1, uint16_t x2, uint16_t y2);
 void lcd_setRotation(uint8_t r);
+void lcd_setBrightness(uint8_t b);
+void lcd_setHBMMode(bool b);
 void lcd_DrawPoint(uint16_t x, uint16_t y, uint16_t color);
 void lcd_fill(uint16_t xsta,
               uint16_t ysta,

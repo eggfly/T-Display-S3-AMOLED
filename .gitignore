@@ -54,3 +54,4 @@ dkms.conf
 .pio
 script
 build
+.DS_Store
