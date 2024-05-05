@@ -98,9 +98,9 @@ void rm67162_init(void)
   pinMode(TFT_RES, OUTPUT);
 
   TFT_RES_L;
-  delay(300);
+  delay(10);
   TFT_RES_H;
-  delay(200);
+  delay(10);
 
 #if LCD_USB_QSPI_DREVER == 1
   esp_err_t ret;
@@ -152,7 +152,7 @@ void rm67162_init(void)
                    lcd_init[i].len & 0x7f);
 
       if (lcd_init[i].len & 0x80)
-        delay(120);
+        delay(10);
     }
   }
 

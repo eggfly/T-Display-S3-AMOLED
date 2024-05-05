@@ -10,6 +10,9 @@
 #include "rm67162.h"
 #include <TFT_eSPI.h>   //https://github.com/Bodmer/TFT_eSPI
 #include "true_color.h"
+#include "mario.h"
+#include "nc1020.h"
+#include "lode_runner.h"
 
 #if ARDUINO_USB_CDC_ON_BOOT != 1
 #warning "If you need to monitor printed data, be sure to set USB CDC On boot to ENABLE, otherwise you will not see any data in the serial monitor"
@@ -52,18 +55,23 @@ void setup()
   Serial.println("setup() done");
 }
 
-uint8_t brightness = 0xFF;
+uint8_t brightness = 0x60;
 
 void loop()
 {
-  spr.pushImage(0, 0, WIDTH, HEIGHT, (uint16_t *)gImage_true_color);
+  // spr.pushImage(0, 0, WIDTH, HEIGHT, (uint16_t *)gImage_true_color);
+  // spr.pushImage((536 - 480) / 2, 0, 480, 240, (uint16_t *)nc1020);
+  spr.pushImage((536 - 480) / 2, 0, 480, 240, (uint16_t *)lode_runner);
+
+  //  spr.pushImage(0, 0, 256, 240, (uint16_t *)mario);
+  //  spr.pushImage(0 + 536 / 2, 0, 256, 240, (uint16_t *)mario);
   lcd_PushColors(0, 0, WIDTH, HEIGHT, (uint16_t *)spr.getPointer());
   if (!digitalRead(0)) {
     Serial.println("press");
     lcd_setBrightness(brightness);
-    lcd_setHBMMode(true);
+    // lcd_setHBMMode(true);
     if (brightness == 0) {
-      brightness = 0x80;
+      brightness = 0x60;
     } else {
       brightness = 0;
     }
